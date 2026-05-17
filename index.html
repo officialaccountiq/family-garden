@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     html
 <style>
+    css
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+css
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.3s;
+}
     body {
         margin: 0;
         padding: 0;
