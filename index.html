@@ -3,37 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    html
-<style>
-    css
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-
-css
-.screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.3s;
-}
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        width: 100%;
-    }
-    .screen {
-        width: 100%;
-        min-height: 100vh;
-    }
-</style>
     <title>Семейный сад | Родовые деревья русской классики</title>
     <style>
         * {
@@ -42,11 +11,15 @@ css
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Georgia', 'Times New Roman', 'Palatino', serif;
             background: #e9e0d1;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .screen {
@@ -65,7 +38,7 @@ css
             visibility: hidden;
         }
 
-        /* ========== ТИТУЛЬНИК с солнечными лучами (НЕТРОНУТ) ========== */
+        /* ========== ТИТУЛЬНИК ========== */
         .title-screen {
             background: linear-gradient(145deg, #e2ecd3, #fdf0df);
             display: flex;
@@ -159,10 +132,9 @@ css
             font-style: italic;
             z-index: 20;
             pointer-events: none;
-            font-family: 'Georgia', serif;
         }
 
-        /* ========== КАРТА (ВЫРОВНЕНА, НЕ СЪЕЗЖАЕТ) ========== */
+        /* ========== КАРТА ========== */
         .map-screen {
             background: #cbbea5;
             padding: 20px;
@@ -170,11 +142,8 @@ css
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            position: relative;
-            min-height: 100%;
         }
 
-        /* зелёные летящие лепестки для карты */
         .map-leaf {
             position: absolute;
             background: #7cb342;
@@ -207,7 +176,6 @@ css
             margin-bottom: 20px;
         }
 
-        /* естественные, волнистые границы регионов */
         .region {
             position: absolute;
             border: 2.5px solid rgba(70, 55, 35, 0.7);
@@ -229,10 +197,8 @@ css
             white-space: nowrap;
             backdrop-filter: blur(4px);
             pointer-events: none;
-            font-family: monospace;
         }
 
-        /* ОЗЕРО С РЫБКАМИ */
         .lake {
             position: absolute;
             left: 34%;
@@ -286,7 +252,6 @@ css
             100% { transform: translateY(-4px) rotate(3deg); }
         }
 
-        /* УВЕЛИЧЕННЫЕ ДЕРЕВЬЯ */
         .tree {
             position: absolute;
             cursor: pointer;
@@ -315,9 +280,6 @@ css
             transform: scale(1.08);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
-        @media (max-width: 800px) {
-            .tree span { padding: 6px 14px; font-size: 12px; white-space: normal; }
-        }
 
         /* СЕМЕЙНОЕ ДРЕВО */
         .family-screen {
@@ -336,125 +298,36 @@ css
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .big-emoji {
-            font-size: 70px;
-            text-align: center;
-        }
-        .family-name {
-            font-size: 34px;
-            text-align: center;
-            font-weight: bold;
-            color: #3f2c1b;
-        }
-        .family-info {
-            background: #e8dcca;
-            padding: 18px;
-            border-radius: 40px;
-            margin: 20px 0;
-            line-height: 1.55;
-            font-size: 0.98rem;
-        }
-        .tree-structure {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 30px 0;
-            gap: 30px;
-        }
-        .parents-block {
-            background: #efe3cf;
-            padding: 20px 30px;
-            border-radius: 70px;
-            text-align: center;
-            min-width: 280px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-            border: 1px solid #ddceb0;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .parents-block:hover {
-            background: #e8d8c0;
-            transform: scale(1.01);
-        }
-        .parents-title {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #5a3f24;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-        .parents-names {
-            font-size: 1.3rem;
-            font-weight: bold;
-            background: #fff6ea;
-            display: inline-block;
-            padding: 8px 24px;
-            border-radius: 60px;
-        }
-        .vertical-line {
-            width: 3px;
-            height: 35px;
-            background: #b6966e;
-            margin: 5px 0;
-        }
-        .children-area {
-            width: 100%;
-            text-align: center;
-        }
-        .children-label {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #8b6a42;
-            margin-bottom: 20px;
-            background: #f3ecdf;
-            display: inline-block;
-            padding: 4px 20px;
-            border-radius: 40px;
-        }
-        .children-list {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .person-card {
-            background: #f2e8da;
-            border-radius: 50px;
-            padding: 14px 20px;
-            text-align: center;
-            min-width: 150px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid #e5d5bc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        .person-card:hover {
-            background: #e2d0b4;
-            transform: translateY(-5px);
-        }
-        .detail-block {
-            background: white;
-            border-radius: 40px;
-            padding: 25px;
-            margin-top: 30px;
-            border-left: 9px solid #b78f5a;
-        }
+        .big-emoji { font-size: 70px; text-align: center; }
+        .family-name { font-size: 34px; text-align: center; font-weight: bold; color: #3f2c1b; }
+        .family-info { background: #e8dcca; padding: 18px; border-radius: 40px; margin: 20px 0; line-height: 1.55; font-size: 0.98rem; }
+        .tree-structure { display: flex; flex-direction: column; align-items: center; margin: 30px 0; gap: 30px; }
+        .parents-block { background: #efe3cf; padding: 20px 30px; border-radius: 70px; text-align: center; min-width: 280px; box-shadow: 0 6px 12px rgba(0,0,0,0.05); border: 1px solid #ddceb0; cursor: pointer; transition: 0.2s; }
+        .parents-block:hover { background: #e8d8c0; transform: scale(1.01); }
+        .parents-title { font-weight: bold; font-size: 1.2rem; color: #5a3f24; margin-bottom: 12px; }
+        .parents-names { font-size: 1.3rem; font-weight: bold; background: #fff6ea; display: inline-block; padding: 8px 24px; border-radius: 60px; }
+        .vertical-line { width: 3px; height: 35px; background: #b6966e; margin: 5px 0; }
+        .children-area { width: 100%; text-align: center; }
+        .children-label { font-size: 0.9rem; font-weight: bold; color: #8b6a42; margin-bottom: 20px; background: #f3ecdf; display: inline-block; padding: 4px 20px; border-radius: 40px; }
+        .children-list { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .person-card { background: #f2e8da; border-radius: 50px; padding: 14px 20px; text-align: center; min-width: 150px; cursor: pointer; transition: all 0.2s; border: 1px solid #e5d5bc; }
+        .person-card:hover { background: #e2d0b4; transform: translateY(-5px); }
+        .detail-block { background: white; border-radius: 40px; padding: 25px; margin-top: 30px; border-left: 9px solid #b78f5a; }
         .detail-name { font-size: 28px; font-weight: bold; }
         .detail-role { color: #8b673c; margin-bottom: 12px; font-style: italic; }
         .detail-section { margin-top: 18px; padding: 8px 0; border-bottom: 1px dashed #ecdbbf; }
         .section-title { font-weight: bold; color: #6f4e2a; display: flex; align-items: center; gap: 8px; }
         .quote { background: #faf1e4; padding: 8px 16px; border-radius: 28px; margin: 10px 0; font-style: italic; }
         .badge { background: #ddceb5; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; display: inline-block; }
-        @media (max-width: 700px) {
-            .tree span { white-space: normal; font-size: 11px; padding: 6px 12px; }
+        
+        @media (max-width: 800px) {
+            .tree span { padding: 6px 14px; font-size: 12px; white-space: normal; }
             .parents-names { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ТИТУЛЬНИК (НЕТРОНУТ) -->
 <div id="titleScreen" class="screen title-screen">
     <div class="sun-rays"></div>
     <div class="flower f1">🌼</div>
@@ -469,36 +342,31 @@ css
     <div class="signature">Выполнила Мамедова Амира Насибовна</div>
 </div>
 
-<!-- КАРТА (ВЫРОВНЕНА, НЕ СЪЕЗЖАЕТ, ЛИСТЬЯ ЕСТЬ) -->
 <div id="mapScreen" class="screen map-screen hidden">
     <button id="backToTitle" class="back-btn">← назад</button>
     <div class="map-area" id="mapArea">
-        <div class="region" style="top: 5%; left: 2%; width: 32%; height: 44%; border-radius: 55% 45% 60% 40% / 50% 50% 50% 50%;"><div class="region-label" style="top: -8px; left: 15px;">📖 Война и мир</div></div>
-        <div class="region" style="top: 53%; left: 2%; width: 32%; height: 42%; border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;"><div class="region-label" style="top: -8px; left: 15px;">🌾 Отцы и дети</div></div>
-        <div class="region" style="top: 5%; left: 66%; width: 32%; height: 44%; border-radius: 60% 40% 45% 55% / 40% 55% 45% 60%;"><div class="region-label" style="top: -8px; left: 15px;">⚡ Преступление и наказание</div></div>
-        <div class="region" style="top: 53%; left: 66%; width: 32%; height: 22%; border-radius: 50% 50% 45% 55% / 60% 40% 60% 40%;"><div class="region-label" style="top: -8px; left: 15px;">😴 Обломов</div></div>
-        <div class="region" style="top: 77%; left: 66%; width: 32%; height: 20%; border-radius: 45% 55% 50% 50% / 40% 50% 50% 60%;"><div class="region-label" style="top: -8px; left: 15px;">⛈️ Гроза</div></div>
+        <div class="region" style="top: 5%; left: 2%; width: 32%; height: 44%;"><div class="region-label" style="top: -8px; left: 15px;">📖 Война и мир</div></div>
+        <div class="region" style="top: 53%; left: 2%; width: 32%; height: 42%;"><div class="region-label" style="top: -8px; left: 15px;">🌾 Отцы и дети</div></div>
+        <div class="region" style="top: 5%; left: 66%; width: 32%; height: 44%;"><div class="region-label" style="top: -8px; left: 15px;">⚡ Преступление и наказание</div></div>
+        <div class="region" style="top: 53%; left: 66%; width: 32%; height: 22%;"><div class="region-label" style="top: -8px; left: 15px;">😴 Обломов</div></div>
+        <div class="region" style="top: 77%; left: 66%; width: 32%; height: 20%;"><div class="region-label" style="top: -8px; left: 15px;">⛈️ Гроза</div></div>
 
-        <div class="lake" id="lakeWithFish">
-            <span>🌊 Семьи XIX века</span>
+        <div class="lake"><span>🌊 Семьи XIX века</span>
             <div class="fish" style="top: 20%; left: 5%; animation-duration: 11s;">🐟</div>
-            <div class="fish" style="top: 55%; left: 60%; animation-duration: 14s; animation-delay: 1s;">🐠</div>
-            <div class="fish" style="top: 70%; left: 25%; animation-duration: 9s; animation-delay: 2s;">🐡</div>
-            <div class="fish" style="top: 35%; left: 75%; animation-duration: 16s; animation-delay: 0.5s;">🐟</div>
-            <div class="fish" style="top: 10%; left: 40%; animation-duration: 13s; font-size: 14px;">🐠</div>
+            <div class="fish" style="top: 55%; left: 60%; animation-duration: 14s;">🐠</div>
+            <div class="fish" style="top: 70%; left: 25%; animation-duration: 9s;">🐡</div>
+            <div class="fish" style="top: 35%; left: 75%; animation-duration: 16s;">🐟</div>
         </div>
 
         <div class="map-flower" style="top: 12%; left: 5%;">🌸</div>
-        <div class="map-flower" style="top: 28%; left: 18%; animation-duration: 7s;">🌼</div>
-        <div class="map-flower" style="top: 48%; left: 12%; animation-duration: 8s;">🌻</div>
+        <div class="map-flower" style="top: 28%; left: 18%;">🌼</div>
+        <div class="map-flower" style="top: 48%; left: 12%;">🌻</div>
         <div class="map-flower" style="top: 65%; left: 28%;">🌺</div>
-        <div class="map-flower" style="top: 82%; left: 15%; animation-duration: 9s;">🌷</div>
+        <div class="map-flower" style="top: 82%; left: 15%;">🌷</div>
         <div class="map-flower" style="top: 15%; left: 72%;">🌸</div>
-        <div class="map-flower" style="top: 35%; left: 85%; animation-duration: 6s;">🌼</div>
+        <div class="map-flower" style="top: 35%; left: 85%;">🌼</div>
         <div class="map-flower" style="top: 60%; left: 78%;">🌻</div>
-        <div class="map-flower" style="top: 88%; left: 82%; animation-duration: 7s;">🌺</div>
-        <div class="map-flower" style="top: 45%; left: 45%;">🌿</div>
-        <div class="map-flower" style="top: 75%; left: 55%;">🍀</div>
+        <div class="map-flower" style="top: 88%; left: 82%;">🌺</div>
 
         <div class="tree" data-family="rostovy" style="left: 14%; top: 22%;"><span>🌳 Ростовы</span></div>
         <div class="tree" data-family="bolkonsky" style="left: 23%; top: 42%;"><span>🌳 Болконские</span></div>
@@ -520,65 +388,70 @@ css
 </div>
 
 <script>
-    // ========== ПОЛНЫЕ СЕМЬИ (информация НЕ ТРОНУТА) ==========
+    // ========== ПОЛНЫЕ СЕМЬИ с МНОГОЧИСЛЕННЫМИ ЦИТАТАМИ ==========
     const families = {
         rostovy: {
             name: "Ростовы", work: "Война и мир",
-            info: "🏡 Родовое гнездо любви и душевной щедрости. Ценности: искренность, патриотизм, гостеприимство. Традиции: семейные вечера с пением, именины, Рождество, бескорыстная помощь.",
+            info: "🏡 Родовое гнездо любви и душевной щедрости. Ценности: искренность, патриотизм, гостеприимство. Традиции: семейные вечера с пением, именины, Рождество, бескорыстная помощь. Ростовы не копят деньги, но копят души. Дети вырастают с чувством собственного достоинства и живым сердцем.",
             parents: ["Граф Илья Андреевич Ростов", "Графиня Наталья Ростова"],
             children: [
-                { name: "Наташа Ростова", role: "дочь", bio: "Душа семьи, эмоциональный центр. Отдаёт подводы раненым.", quotes: ["«Мама, это невозможно! Отдадим подводы раненым!»", "«Пойдём, мама, скорее!»"], tradition: "поёт, участвует в святочных гаданиях", family_influence: "Любовь Ростовых сделала её способной к великому состраданию." },
-                { name: "Николай Ростов", role: "сын", bio: "Честный, преданный семье. Признаёт карточный долг.", quotes: ["«Папа! простите! Я виноват...»", "«Ростовы не умеют лгать»"], tradition: "охота, воинская честь", family_influence: "Верность роду и порядочность." },
-                { name: "Петя Ростов", role: "младший сын", bio: "Романтичный, погибает на войне.", quotes: ["«Милые мои, Ростовы дорогие!»"], tradition: "мечтал о подвигах", family_influence: "Горячее сердце, отданное Отечеству." },
-                { name: "Вера Ростова", role: "старшая дочь", bio: "Холодноватая, но тоже часть рода.", quotes: ["«Отчего вы всегда с глупостями?»"], family_influence: "Отличается от других, но остаётся Ростовой." },
-                { name: "Соня", role: "племянница, воспитанница", bio: "Жертвенная, преданная.", quotes: ["«Я на всё согласна, дядюшка»"], tradition: "живёт по правилам долга", family_influence: "Ростовы дали ей дом, она — верность." }
+                { name: "Наташа Ростова", role: "дочь", bio: "Душа семьи, эмоциональный центр. Выросла в атмосфере всепрощения, поэтому не боится чувствовать и ошибаться. Именно семейное тепло научило её состраданию: отдаёт подводы раненым, ухаживает за умирающим Андреем.", quotes: ["«Мама, это невозможно! Посмотрите, что там на дворе! Отдадим подводы раненым!»", "«Я не могу не любить его… я его люблю!»", "«Пойдём, мама, скорее, скорее!»", "«Мне кажется, что я никогда так не любила, как теперь»", "«Я умру, умру от любви!»"], tradition: "поёт, участвует в святочных гаданиях", family_influence: "Любовь Ростовых сделала её способной к великому состраданию." },
+                { name: "Николай Ростов", role: "сын", bio: "Честный, порывистый, преданный семье. Дома его научили не бояться признавать ошибки. Карточный долг признаётся отцу без страха, потому что знает: Ростовы не отвернутся.", quotes: ["«Папа! папа! — закричал он рыдая, — простите! Я виноват...»", "«Ростовы не умеют лгать»", "«Я честный человек и никогда никого не обманывал»", "«Мне совестно, что я один так счастлив»", "«Мы русские, мы на всё готовы!»"], tradition: "охота, воинская честь", family_influence: "Верность роду и порядочность." },
+                { name: "Петя Ростов", role: "младший сын", bio: "Пылкий, романтичный, полон желания подражать старшим. Гибель Пети становится горем, которое объединяет всю семью в скорби.", quotes: ["«Милые мои, Ростовы дорогие!»", "«Я привык что-нибудь решительное говорить, когда иду на дело»", "«Я не хочу никаких наград, а хочу быть в сражении»", "«Маменька, я вас очень, очень люблю!»"], tradition: "мечтал о военном подвиге", family_influence: "родители не подавляли его волю, и он вырос героем." },
+                { name: "Вера Ростова", role: "старшая дочь", bio: "Холодноватая, рассудительная, отличается от других детей Ростовых. Часто делает замечания братьям и сёстрам, но всё равно остаётся частью этого дома.", quotes: ["«Отчего вы всегда с глупостями?»", "«Я удивляюсь, как это вы можете говорить такие вещи!»", "«Мне кажется, что вы все ведёте себя неприлично»"], family_influence: "Отличается от других, но остаётся Ростовой." },
+                { name: "Соня", role: "племянница, воспитанница", bio: "Жертвенная и преданная, впитала семейный закон бескорыстия. Отказывается от личного счастья ради Ростовых.", quotes: ["«Я так люблю его и себя и всех…»", "«Я на всё согласна, дядюшка»", "«Я не могу иначе, я должна пожертвовать собой»", "«Я никогда не забуду того, что вы для меня сделали»"], tradition: "живёт по правилам семейного долга", family_influence: "Ростовы дали ей дом, а она — свою верность." }
             ]
         },
-        bolkonsky: { name: "Болконские", work: "Война и мир", info: "⚜️ Честь, порядок, интеллект. Строгий распорядок, уважение к роду.", parents: ["Князь Николай Андреевич Болконский"], children: [
-            { name: "Андрей Болконский", role: "сын", bio: "Аналитический ум, честь дороже жизни.", quotes: ["«Честь дороже жизни»", "«Жить так, как я живу, я не могу»"], family_influence: "Болконская стойкость." },
-            { name: "Марья Болконская", role: "дочь", bio: "Набожная, терпеливая.", quotes: ["«Я не боюсь ничего, кроме того, чтобы огорчить их»"], family_influence: "Смирение и твёрдость духа." }
-        ] },
-        kuraginy: { name: "Курагины", work: "Война и мир", info: "💔 Анти-семья: цинизм, выгода, отсутствие духовных связей.", parents: ["Князь Василий Курагин"], children: [
-            { name: "Элен Курагина", role: "дочь", bio: "Красивая и пустая.", quotes: ["«Я не такая дура, чтобы не понимать»"], family_influence: "Эгоизм и расчёт." },
-            { name: "Анатоль Курагин", role: "сын", bio: "Развратник без чести.", quotes: ["«Я не знаю, что значит стыд»"], family_influence: "Вседозволенность." },
-            { name: "Ипполит Курагин", role: "сын", bio: "Глуповат и нелеп.", quotes: ["посмешище в свете"] }
-        ] },
-        bazarovy: { name: "Базаровы", work: "Отцы и дети", info: "🌾 Родительская безусловная любовь, труд и вера.", parents: ["Василий Иванович Базаров", "Арина Власьевна Базарова"], children: [
-            { name: "Евгений Базаров", role: "сын", bio: "Нигилист, но любящий сын.", quotes: ["«Родители мои — люди добрые... люблю их»"], family_influence: "Фундамент самоуважения." }
-        ] },
-        kirsanovy: { name: "Кирсановы", work: "Отцы и дети", info: "🎻 Дворянское гнездо, уважение к выбору детей.", parents: ["Николай Петрович Кирсанов"], children: [
-            { name: "Аркадий Кирсанов", role: "сын", bio: "Тянется к отцовской доброте.", quotes: ["«Отец, я по-прежнему тебя уважаю»"], family_influence: "Свобода и деликатность." }
-        ] },
-        kabanova: { name: "Кабановы", work: "Гроза", info: "🌑 Тёмное царство лицемерия и деспотизма. Традиции: домострой, страх, власть.", parents: ["Марфа Кабанова (Кабаниха)"], children: [
-            { name: "Катерина Кабанова", role: "невестка", bio: "Искренняя верующая, задыхается в доме. Не выносит лжи.", quotes: ["«А уж коли мне здесь опостынет, так не удержат меня никакой силой»", "«Отчего люди не летают?»"], family_influence: "Трагедия из-за гнёта." },
-            { name: "Тихон Кабанов", role: "сын", bio: "Безвольный, забитый, пьёт от отчаяния.", quotes: ["«Маменька, вы её погубили!»", "«А я зачем остался жить да мучиться!»"], family_influence: "Сломленная воля." },
-            { name: "Варвара Кабанова", role: "дочь", bio: "Научилась лгать, чтобы выжить.", quotes: ["«Делай что хочешь, лишь бы шито да крыто было»", "«У нас весь дом на обмане держится»"], family_influence: "Приспособленчество." }
-        ] },
-        marmeladovy: { name: "Мармеладовы", work: "Преступление и наказание", info: "🕯️ Семья на дне, с огромной силой сострадания. Ценность: жертвенность и жалость. У Семёна Мармеладова дети от первого брака (Соня) и от Катерины Ивановны (Поля, Лёня, Коля).",
-            parents: ["Семён Захарович Мармеладов", "Катерина Ивановна Мармеладова"],
-            children: [
-                { name: "Соня Мармеладова", role: "дочь (от первого брака)", bio: "Кроткая спасительница, идёт на панель ради семьи, но сохраняет чистоту души.", quotes: ["«Разве я могу без них жить?»", "«Вместе ведь искать пойдём»", "«Нет, тебя несчастнее никого теперь в целом свете»"], family_influence: "Бесконечная жертвенность и вера." },
-                { name: "Поля (Пелагея) Мармеладова", role: "дочь (от Катерины Ивановны)", bio: "Маленькая девочка, которую мать заставляет заботиться о младших. Символ страдания детей в нищете.", quotes: ["«бедная, бедная!»", "она рыдает над отцом"], family_influence: "Детство, разрушенное нуждой." },
-                { name: "Лёня (Леонид) Мармеладов", role: "сын (от Катерины Ивановны)", bio: "Мальчик, который плачет и болеет в невыносимых условиях.", quotes: ["болезненный ребёнок"], family_influence: "Жертва социального дна." },
-                { name: "Коля Мармеладов", role: "сын (от Катерины Ивановны)", bio: "Самый младший, почти младенец, которого пытаются спасти.", quotes: ["капризный, больной"], family_influence: "Беспомощность." }
+        bolkonsky: { name: "Болконские", work: "Война и мир", info: "⚜️ Род чести и ума. Ценности: долг, порядок, гордость, интеллектуальный труд. Традиции: строгий распорядок дня, занятия математикой и науками, уважение к роду. Здесь любовь проявляется через строгость, но за суровостью скрывается глубокая привязанность.", parents: ["Князь Николай Андреевич Болконский"], children: [
+            { name: "Андрей Болконский", role: "сын", bio: "Унаследовал аналитический ум и презрение к фальши. От отца взял чувство чести, но не научился открыто выражать нежность. Семья дала ему нравственный стержень, который ведёт его на поле битвы.", quotes: ["«Жить так, как я живу, я не могу, мне надо славы…»", "«Честь дороже жизни»", "«Помни одно: честь не купишь»", "«Я иду служить, потому что здесь, в этой гостиной, я ничего не значу»", "«Надо быть справедливым, надо быть милосердным»"], tradition: "чтение книг и философия", family_influence: "Болконская честь ведёт его к духовным исканиям." },
+            { name: "Марья Болконская", role: "дочь", bio: "Глубокая, набожная, терпеливая. Отец-деспот не сломал её доброту, а укрепил внутреннюю силу. Она становится спасительницей семейных традиций.", quotes: ["«Я не боюсь ничего, кроме того, чтобы огорчить их»", "«Моя задача — быть счастливой другим счастьем»", "«Ах, друг мой, религия одна может нас утешить»", "«Я молюсь за него каждую ночь»", "«Я верю, что всё будет хорошо»"], tradition: "чтение священных текстов, забота об отце", family_influence: "Болконский уклад воспитал в ней христианское смирение и твердость." }
             ]
         },
-        raskolnikovy: { name: "Раскольниковы", work: "Преступление и наказание", info: "💔 Жертвенная любовь матери и сестры. Бедность, но безмерная преданность друг другу.", parents: ["Пульхерия Александровна Раскольникова"], children: [
-            { name: "Родион Раскольников", role: "сын", bio: "Не может принять жертву матери, толкает на преступление.", quotes: ["«Мама, милая, добрая мама моя!»", "«Я не тебе поклонился, я всему страданию человеческому поклонился»"], family_influence: "Боль и опора." },
-            { name: "Авдотья Раскольникова (Дуня)", role: "сестра", bio: "Гордая, решительная, жертвует собой ради брата.", quotes: ["«Я хочу быть честной женой»", "«Я еще в силах работать и трудиться»"], family_influence: "Сила и самоотверженность." }
-        ] },
-        oblomovy: { name: "Обломовы", work: "Обломов", info: "🛌 Обломовка — рай безделья, традиции: долгий сон, обильная еда, отсутствие труда.", parents: ["Обломовы (старшее поколение)"], children: [
-            { name: "Илья Ильич Обломов", role: "сын", bio: "Добрый мечтатель, парализованный волей. Вырос в атмосфере опеки.", quotes: ["«Обломовка — это наша родина»", "«Всё это мертвецы, спящие люди»"], family_influence: "Сформировали 'обломовщину'." }
-        ] },
-        shtoltsy: { name: "Штольцы", work: "Обломов", info: "⚙️ Деятельный труд, порядок, рациональное воспитание. Ценности: ответственность, самостоятельность.", parents: ["Иван Богданович Штольц"], children: [
-            { name: "Андрей Штольц", role: "сын", bio: "Энергичный, успешный, целеустремлённый.", quotes: ["«Труд — образ, содержание, стихия и цель жизни»", "«Обломов, я знаю: ты ленив, но у тебя душа!»"], family_influence: "Дисциплина и успех." }
-        ] }
+        kuraginy: { name: "Курагины", work: "Война и мир", info: "💔 Анти-идеал семьи. Здесь царит цинизм, интриги и выгода. Родители рассматривают детей как разменную монету. Традиции отсутствуют, есть лишь бездуховность и разрушение связей.", parents: ["Князь Василий Курагин"], children: [
+            { name: "Элен Курагина", role: "дочь", bio: "Красивая, пустая, расчётливая. Воспитанная в атмосфере вседозволенности, не способна на глубокие чувства. Становится символом светской безнравственности.", quotes: ["«Я не такая дура, чтобы не понимать»", "«Нет, я не могу… я не хочу…»", "«Что обо мне говорят, мне всё равно»", "«Я имею право на счастье, как и всякая женщина»"], family_influence: "Отсутствие тепла сделало её эгоистичной." },
+            { name: "Анатоль Курагин", role: "сын", bio: "Беспечный искатель удовольствий. Отец покрывает его пороки. Для него нет ни стыда, ни границ.", quotes: ["«Я не знаю, что значит стыд»", "«Отец! серьезно? я люблю её безумно»", "«Я не создан для семейной жизни»", "«Жить надо весело, пока молоды»"], family_influence: "Курагины вырастили хищника без внутреннего закона." },
+            { name: "Ипполит Курагин", role: "сын", bio: "Глуповат, нелеп, ничтожен. Его никто не воспринимает всерьёз, он становится посмешищем в свете.", quotes: ["Он постоянно говорит невпопад", "«Какая прелесть!» — повторяет бессмысленно"], family_influence: "Полное отсутствие воспитания сделало его ничтожеством." }
+            ]
+        },
+        bazarovy: { name: "Базаровы", work: "Отцы и дети", info: "🌾 Простая глубокая семья: родительская безусловная любовь, труд и вера. Отец — лекарь, мать — хранительница очага. Ценности: честный труд и принятие ребёнка любым, даже если он нигилист.", parents: ["Василий Иванович Базаров", "Арина Власьевна Базарова"], children: [
+            { name: "Евгений Базаров", role: "сын", bio: "Нигилист, отрицающий всё, но внутри любящий сын. Родительская любовь дала ему силу и уверенность, но он стесняется их простоты.", quotes: ["«Родители мои — люди добрые, но отстали от века»", "«Люблю их, а что делать?»", "«Человек должен быть суровым, как железо»", "«Природа не храм, а мастерская»", "«Я ничьих мнений не разделяю, я имею свои»"], family_influence: "Базаровы дали ему мощный фундамент самоуважения и трудолюбия." }
+            ]
+        },
+        kirsanovy: { name: "Кирсановы", work: "Отцы и дети", info: "🎻 Дворянское гнездо с любовью к искусству и попыткой понять молодое поколение. Ценности: уважение выбора детей, интеллигентность, усадебный романтизм.", parents: ["Николай Петрович Кирсанов"], children: [
+            { name: "Аркадий Кирсанов", role: "сын", bio: "Пытается быть нигилистом, но сердцем тянется к отцовской доброте. Семья воспитала в нём деликатность.", quotes: ["«Отец, не огорчайся, я по-прежнему тебя уважаю»", "«Провинциальная жизнь имеет свою прелесть»", "«Я не могу жить без семьи»", "«Ты у меня один, отец»"], family_influence: "Кирсановы дали ему свободу и поддержку." }
+            ]
+        },
+        kabanova: { name: "Кабановы", work: "Гроза", info: "🌑 Тёмное царство лицемерия. Традиции выродились в деспотизм, ценность — страх и власть. Семья разрушает личность.", parents: ["Марфа Кабанова (Кабаниха)"], children: [
+            { name: "Катерина Кабанова", role: "невестка", bio: "Искренняя, верующая, задыхается в доме Кабанихи. Семья мужа её сломала, но не убила внутренний свет.", quotes: ["«А уж коли мне здесь опостынет, так не удержат меня никакой силой»", "«Отчего люди не летают?»", "«Я не боюсь смерти, а боюсь греха»", "«Воля моя!»", "«Лучше в омут, чем жить здесь!»"], family_influence: "Гнет Кабановых привёл к трагедии." },
+            { name: "Тихон Кабанов", role: "сын", bio: "Безвольный, забитый, пьёт от отчаяния. Жалеет Катерину, но не может защитить.", quotes: ["«Маменька, вы её погубили!»", "«А я зачем остался жить да мучиться!»", "«Я не смею, маменька, перечить вам»", "«Хорошо тебе, Катя! А я зачем остался жить на свете да мучиться!»"], family_influence: "Сломленная воля и неспособность к действию." },
+            { name: "Варвара Кабанова", role: "дочь", bio: "Научилась лгать и таиться, чтобы выжить. В конце убегает из дома с Кудряшом.", quotes: ["«Делай что хочешь, лишь бы шито да крыто было»", "«У нас весь дом на обмане держится»", "«И я была маленькая, меня не баловали»", "«Я, маменька, не спорю, я вас слушаю»"], family_influence: "Приспособленчество и хитрость как способ выжить." }
+            ]
+        },
+        marmeladovy: { name: "Мармеладовы", work: "Преступление и наказание", info: "🕯️ Семья на дне, но с огромной силой сострадания. Ценность: не бросить своего, жертвенность и жалость. У Семёна Мармеладова дети от первого брака (Соня) и от Катерины Ивановны (Поля, Лёня, Коля).", parents: ["Семён Захарович Мармеладов", "Катерина Ивановна Мармеладова"], children: [
+            { name: "Соня Мармеладова", role: "дочь (от первого брака)", bio: "Кроткая спасительница. Ради семьи идёт на панель, но сохраняет чистоту души. Становится духовным центром для Раскольникова.", quotes: ["«Разве я могу без них жить?»", "«Вместе ведь искать пойдём»", "«Нет, тебя несчастнее никого теперь в целом свете»", "«На бога нельзя роптать»", "«Переступить нельзя, так и останься»"], family_influence: "Мармеладовы научили её бесконечной жертвенности." },
+            { name: "Поля (Пелагея) Мармеладова", role: "дочь (от Катерины Ивановны)", bio: "Маленькая девочка, которую мать заставляет заботиться о младших. Символ страдания детей в нищете.", quotes: ["«бедная, бедная!»", "она рыдает над отцом", "«Маменька, не плачьте!»"], family_influence: "Детство, разрушенное нуждой." },
+            { name: "Лёня (Леонид) Мармеладов", role: "сын (от Катерины Ивановны)", bio: "Мальчик, который плачет и болеет в невыносимых условиях.", quotes: ["«Ой, маменька, мне больно!»", "болезненный ребёнок"], family_influence: "Жертва социального дна." },
+            { name: "Коля Мармеладов", role: "сын (от Катерины Ивановны)", bio: "Самый младший, почти младенец, которого пытаются спасти.", quotes: ["капризный, больной", "плачет от голода"], family_influence: "Беспомощность." }
+            ]
+        },
+        raskolnikovy: { name: "Раскольниковы", work: "Преступление и наказание", info: "💔 Жертвенная любовь матери и сестры. Бедность, но безмерная преданность друг другу. Родители готовы на всё ради будущего Родиона.", parents: ["Пульхерия Александровна Раскольникова"], children: [
+            { name: "Родион Раскольников", role: "сын", bio: "Не может принять материнскую жертву, что толкает его на преступление. Семья для него — боль и опора.", quotes: ["«Мама, милая, добрая мама моя!»", "«Я не тебе поклонился, я всему страданию человеческому поклонился»", "«Я хочу, мама, чтобы ты была счастлива»", "«Тварь я дрожащая или право имею?»", "«Надо было давно себя убить!»"], family_influence: "Родственные узы делают его раскаяние возможным." },
+            { name: "Авдотья Раскольникова (Дуня)", role: "сестра", bio: "Гордая, решительная, жертвует собой ради брата. Соглашается на унизительный брак с Лужиным, чтобы помочь Родиону.", quotes: ["«Я хочу быть честной женой»", "«Я еще в силах работать и трудиться»", "«Я не хочу быть благодетельницей»", "«Я не боюсь никакой работы»", "«Всё, что я делаю, я делаю ради семьи»"], family_influence: "Сила и самоотверженность." }
+            ]
+        },
+        oblomovy: { name: "Обломовы", work: "Обломов", info: "🛌 Обломовка — райский уголок безделья и опеки. Традиции: долгий сон, обильная еда, отсутствие труда. Доброта, убивающая волю.", parents: ["Обломовы (старшее поколение)"], children: [
+            { name: "Илья Ильич Обломов", role: "сын", bio: "Добрый мечтатель, парализованный воспитанием. Семья дала ему тепло, но отняла волю.", quotes: ["«Обломовка — это наша родина»", "«Всё это мертвецы, спящие люди»", "«Жизнь: хорошая жизнь! Чего там искать?»", "«А я всё лежу…»", "«Не надо меня трогать, не надо!»"], family_influence: "Обломовка сформировала 'обломовщину'." }
+            ]
+        },
+        shtoltsy: { name: "Штольцы", work: "Обломов", info: "⚙️ Деятельный труд и рациональность. Ценности: ответственность, порядок, самостоятельность. Ребёнка с детства приучают к делу.", parents: ["Иван Богданович Штольц"], children: [
+            { name: "Андрей Штольц", role: "сын", bio: "Энергичный, успешный, целеустремлённый. Унаследовал дисциплину отца и умение жить на полную мощность.", quotes: ["«Труд — образ, содержание, стихия и цель жизни»", "«Обломов, я знаю: ты ленив, но у тебя душа!»", "«Человек должен работать»", "«Я не умею сидеть сложа руки»", "«Труд без отдыха — это каторга, отдых без труда — это скука»"], family_influence: "Штольцы сделали его деятелем новой России." }
+            ]
+        }
     };
 
-    // ЛЕПЕСТКИ ДЛЯ ТИТУЛЬНИКА
     function createTitlePetals() {
         const title = document.getElementById('titleScreen');
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 70; i++) {
             let p = document.createElement('div');
             p.className = 'petal';
             let size = 6 + Math.random() * 14;
@@ -592,14 +465,12 @@ css
         }
     }
 
-    // ЗЕЛЁНЫЕ ЛЕПЕСТКИ ДЛЯ КАРТЫ
-    let mapLeafInterval = null;
     function createMapLeaves() {
-        const mapArea = document.querySelector('.map-area');
+        const mapArea = document.getElementById('mapArea');
         if (!mapArea) return;
         const oldLeaves = document.querySelectorAll('.map-leaf');
         oldLeaves.forEach(l => l.remove());
-        for (let i = 0; i < 55; i++) {
+        for (let i = 0; i < 60; i++) {
             let leaf = document.createElement('div');
             leaf.className = 'map-leaf';
             let size = 6 + Math.random() * 12;
@@ -615,42 +486,27 @@ css
         }
     }
 
-    const leafAnim = document.createElement('style');
-    leafAnim.textContent = `@keyframes leafFloat { 0% { transform: translateY(-15px) rotate(0deg); opacity: 0.5; } 50% { transform: translateY(20px) rotate(180deg); opacity: 0.7; } 100% { transform: translateY(55px) rotate(360deg); opacity: 0; } }`;
-    document.head.appendChild(leafAnim);
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `@keyframes fall { 0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(120vh) rotate(360deg); opacity: 0; } }
+                              @keyframes leafFloat { 0% { transform: translateY(-15px) rotate(0deg); opacity: 0.5; } 100% { transform: translateY(55px) rotate(360deg); opacity: 0; } }`;
+    document.head.appendChild(styleSheet);
 
-    const animStyle = document.createElement('style');
-    animStyle.textContent = `@keyframes fall { 0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(120vh) rotate(360deg); opacity: 0; } }`;
-    document.head.appendChild(animStyle);
-
-    // НАВИГАЦИЯ
     const titleScr = document.getElementById('titleScreen');
     const mapScr = document.getElementById('mapScreen');
     const familyScr = document.getElementById('familyScreen');
     
-    document.getElementById('enterBtn').onclick = () => { 
-        titleScr.classList.add('hidden'); 
-        mapScr.classList.remove('hidden'); 
-        // принудительно прокручиваем карту к началу, чтобы сразу видеть деревья
-        setTimeout(() => {
-            mapScr.scrollTop = 0;
-            createMapLeaves();
-        }, 30);
+    document.getElementById('enterBtn').onclick = () => {
+        titleScr.classList.add('hidden');
+        mapScr.classList.remove('hidden');
+        setTimeout(() => { mapScr.scrollTop = 0; createMapLeaves(); }, 30);
     };
-    document.getElementById('backToTitle').onclick = () => { 
-        mapScr.classList.add('hidden'); 
-        titleScr.classList.remove('hidden'); 
-    };
-    document.getElementById('backToMap').onclick = () => { 
-        familyScr.classList.add('hidden'); 
-        mapScr.classList.remove('hidden'); 
-        setTimeout(() => {
-            mapScr.scrollTop = 0;
-            createMapLeaves();
-        }, 30);
+    document.getElementById('backToTitle').onclick = () => { mapScr.classList.add('hidden'); titleScr.classList.remove('hidden'); };
+    document.getElementById('backToMap').onclick = () => {
+        familyScr.classList.add('hidden');
+        mapScr.classList.remove('hidden');
+        setTimeout(() => { mapScr.scrollTop = 0; createMapLeaves(); }, 30);
     };
 
-    // ПОКАЗ СЕМЕЙНОГО ДРЕВА
     function showFamilyTree(familyId) {
         const fam = families[familyId];
         if (!fam) return;
@@ -660,16 +516,14 @@ css
         
         let parentsHtml = `<div class="parents-block" id="parentsBlock"><div class="parents-title">🌿 РОДИТЕЛИ (основа рода)</div><div class="parents-names">${fam.parents.join(' & ')}</div></div>`;
         let childrenCards = '';
-        if (fam.children && fam.children.length) {
-            fam.children.forEach(child => {
-                childrenCards += `<div class="person-card" data-name="${child.name}"><div class="person-name">${child.name}</div><div class="person-role">${child.role}</div></div>`;
-            });
-        } else { childrenCards = '<div class="person-card">нет данных</div>'; }
+        fam.children.forEach(child => {
+            childrenCards += `<div class="person-card" data-name="${child.name}"><div class="person-name">${child.name}</div><div class="person-role">${child.role}</div></div>`;
+        });
         
         container.innerHTML = `
             <div class="big-emoji">🌳</div>
             <div class="family-name">${fam.name}</div>
-            <div class="family-info"><strong>📖 Из произведения: ${fam.work}</strong><br>📜 ${fam.info}</div>
+            <div class="family-info"><strong>📖 Из произведения: ${fam.work}</strong><br><br>📜 ${fam.info}</div>
             <div class="tree-structure">
                 ${parentsHtml}
                 <div class="vertical-line"></div>
@@ -679,29 +533,29 @@ css
         `;
         
         document.getElementById('parentsBlock').onclick = () => {
-            let parentInfo = `<div class="detail-block"><div class="detail-name">👪 Родители рода ${fam.name}</div><div class="detail-role">хранители уклада</div>
-            <div class="detail-section"><span class="section-title">📖 О родителях:</span> ${fam.parents.join(' и ')} — именно они заложили традиции семьи. ${fam.info.substring(0, 200)}</div>
-            <div class="detail-section"><span class="section-title">🏡 Влияние на детей:</span> Их воспитание определило судьбы следующих поколений: любовь, строгость или безразличие — отражено в каждом потомке.</div>
+            let allQuotes = fam.children.slice(0, 3).map(c => `«${c.quotes[0]}»`).join(', ');
+            document.getElementById('personDetail').innerHTML = `<div class="detail-block"><div class="detail-name">👪 ${fam.parents.join(' и ')}</div><div class="detail-role">основатели и хранители рода</div>
+            <div class="detail-section"><span class="section-title">📖 О родителях:</span> ${fam.parents.join(' и ')} заложили те самые традиции, которые определяют судьбу всей семьи. ${fam.info.substring(0, 250)}</div>
+            <div class="detail-section"><span class="section-title">🏡 Какой уклад они создали:</span> Именно их воспитание — любовь или строгость, свобода или контроль — сформировало характеры всех детей. В роду ${fam.name} ${fam.parents[0]} и ${fam.parents[1] || 'второй родитель'} стали фундаментом, на котором выросло целое поколение.</div>
+            <div class="quote">«Семья начинается с родителей» — народная мудрость</div>
             <div class="badge">основа семейного древа</div></div>`;
-            document.getElementById('personDetail').innerHTML = parentInfo;
             document.getElementById('personDetail').scrollIntoView({ behavior: 'smooth' });
         };
         
         document.querySelectorAll('.person-card').forEach(card => {
             card.onclick = () => {
-                const name = card.getAttribute('data-name');
-                const member = fam.children?.find(m => m.name === name);
+                const member = fam.children.find(m => m.name === card.getAttribute('data-name'));
                 if (member) {
-                    let quotesHtml = member.quotes ? member.quotes.map(q => `<div class="quote">«${q}»</div>`).join('') : '<div class="quote">— образ раскрыт в романе —</div>';
+                    let quotesHtml = member.quotes.map(q => `<div class="quote">${q}</div>`).join('');
                     let traditionInfo = member.tradition ? `<div class="detail-section"><span class="section-title">📜 Семейные традиции:</span> ${member.tradition}</div>` : '';
                     document.getElementById('personDetail').innerHTML = `
                         <div class="detail-block">
                             <div class="detail-name">${member.name}</div>
                             <div class="detail-role">${member.role}</div>
                             <div class="detail-section"><span class="section-title">📖 Характеристика:</span> ${member.bio}</div>
-                            <div class="detail-section"><span class="section-title">🏡 Влияние семьи на героя:</span> ${member.family_influence}</div>
+                            <div class="detail-section"><span class="section-title">🏡 Как семья повлияла на героя:</span> ${member.family_influence}</div>
                             ${traditionInfo}
-                            <div class="detail-section"><span class="section-title">✨ Цитаты:</span> ${quotesHtml}</div>
+                            <div class="detail-section"><span class="section-title">✨ Живые цитаты из текста:</span> ${quotesHtml}</div>
                             <div class="badge">часть рода «${fam.name}»</div>
                         </div>
                     `;
@@ -712,8 +566,9 @@ css
     }
 
     document.querySelectorAll('.tree').forEach(tree => {
-        tree.onclick = () => { const familyKey = tree.getAttribute('data-family'); if (familyKey) showFamilyTree(familyKey); };
+        tree.onclick = () => showFamilyTree(tree.getAttribute('data-family'));
     });
+    
     createTitlePetals();
 </script>
 </body>
